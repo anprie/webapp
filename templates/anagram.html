@@ -1,0 +1,13 @@
+<!doctype html>
+<title>anagrams</title>
+{% if word and language %}
+    <p>You entered {{ word }} and chose {{ language }}. </p>
+    {% if results and results != "set()" %}
+        <p>Your anagrams are</p>
+        <p>{{ results }}</p>
+    {% else %}
+        <p>I'm terribly sorry but there's no anagram that aligns with the rules of {{ language }}</p>
+    {% endif %}
+{% else %}
+    <p>Sorry, something went wrong!</p>
+{% endif %}

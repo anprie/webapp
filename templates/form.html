@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset ="utf-8"></meta>
+    <title>anagram generator</title>
+</head>
+<body>
+
+    <h1>Anagram Generator</h1>
+
+	<form action = "http://localhost:5000/form" method = "post">
+        <table>
+            <tr>
+                <td>Please enter a word!</td>
+                <td>
+                    <input type = "text"
+                            name = "word"
+                            size = 15
+                            maxlength = 20
+                            required >
+                    </input>
+            </tr>
+            <tr>
+                <td>Please choose a language!</td>
+                <td>
+                    <input type = "text"
+                            name = "language"
+                            list = "languages"
+                            required ></p>
+
+                        <datalist id = "languages">
+                            <select>
+                                <option value = "german">german</option>
+                            </select>
+                        </datalist>
+                    </input>
+                </td>
+            </tr>
+        </table>
+
+        <p><input type = "submit" value = "submit" /></p>
+
+	</form>
+</body>
+</html>
+
