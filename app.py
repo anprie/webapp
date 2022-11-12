@@ -14,7 +14,7 @@ app = Flask(__name__)#, template_folder='templates' )
 def index():
     return render_template('index.html')
 
-@app.route('/anagram/<word>,<language>,<results>/')
+@app.route('/anagram/<word>_<language>_<results>/')
 def anagram(word, language, results):
     return render_template('anagram.html', results=results, word=word, language=language)
 
