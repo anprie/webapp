@@ -12,16 +12,10 @@ app = Flask(__name__)#, template_folder='templates' )
 
 @app.route('/')
 def index():
-    #return render_template('index.html')
-    return 'index'
+    return render_template('index.html')
 
-#@app.route('/anagram/<results>')
-#def anagram(results):
-@app.route('/anagram/<word>_<language>_<results>/')
+@app.route('/anagram/<word>,<language>,<results>/')
 def anagram(word, language, results):
-    #print("word: ", word)
-    #print("language: ", language)
-    #print("results: ", results)
     return render_template('anagram.html', results=results, word=word, language=language)
 
 @app.route('/form', methods=['POST', 'GET'])
@@ -30,7 +24,6 @@ def form():
         word = escape(request.form['word'])
         language = escape(request.form['language'])
         results = Anagram.process(word, workdir +'/../anagram2/'+ language)
-        print("results: ", results)
         return redirect(url_for('anagram', word=word, language=language, results=results))
     else:
         return render_template('form.html')
