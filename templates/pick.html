@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset ="utf-8"></meta>
+    <title>Pick_result</title>
+</head>
+<body>
+    <h1>Anagram Generator</h1>
+    <p>Which of your anagrams would you like to rearrange?</p>
+    {% for i in results %}
+	    <p><a href = "http://localhost:5000/anagram/results/{{ word }}_{{ language }}_{{ results }}/pick/rearrange/{{ i }}" method = "get">"{{ i }}"</a></p>{% if not loop.last %}, {% endif %}
+    {% endfor %}
+
+</body>
