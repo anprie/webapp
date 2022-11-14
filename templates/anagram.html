@@ -11,7 +11,7 @@
         <div style="font-size: 18px">
         <pre>{{ results }}</pre>
         </div>
-	    <p><a href = "http://localhost:5000/permute" method = "get">Permute result</a></p>
+	    <p><a href = "http://localhost:5000/pick/{{ results }}" >Permute result</a></p>
     {% else %}
         <p>I'm terribly sorry but there is no anagram that corresponds with the letter distributions of {{ language }}</p>
     {% endif %}
