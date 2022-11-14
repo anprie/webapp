@@ -1,5 +1,9 @@
 <!doctype html>
-<title>anagrams</title>
+<head>
+    <title>anagrams</title>
+    <meta charset ="utf-8"></meta>
+</head>
+<body>
 {% if word and language %}
     <p>You entered '{{ word }}' and chose {{ language }}. </p>
     {% if results and results != "set()" %}
@@ -7,9 +11,11 @@
         <div style="font-size: 18px">
         <pre>{{ results }}</pre>
         </div>
+	    <p><a href = "http://localhost:5000/permute" method = "get">Permute result</a></p>
     {% else %}
         <p>I'm terribly sorry but there is no anagram that corresponds with the letter distributions of {{ language }}</p>
     {% endif %}
 {% else %}
     <p>Sorry, something went wrong!</p>
 {% endif %}
+</body>
