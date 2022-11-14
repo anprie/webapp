@@ -1,9 +1,9 @@
 from flask import Flask, redirect, url_for, request, render_template
 from markupsafe import escape
 import sys
-sys.path.insert(0, '/home/antonia/repositories/anagram2/')
-import os
-workdir = os.path.abspath( os.path.dirname( __file__ ) )
+#sys.path.insert(0, '/home/antonia/repositories/anagram2/')
+#import os
+#workdir = os.path.abspath( os.path.dirname( __file__ ) )
 
 from anagram import Anagram
 
@@ -24,7 +24,8 @@ def form():
     if request.method == 'POST':
         word = escape(request.form['word'])
         language = escape(request.form['language'])
-        results = Anagram.process(word, workdir +'/../anagram2/'+ language)
+        #results = Anagram.process(word, workdir +'/../anagram2/'+ language)
+        results = Anagram.process(word, language)
         return redirect(url_for('anagram', word=word, language=language, results=results))
     else:
         return render_template('form.html')
