@@ -14,38 +14,39 @@ app = Flask(__name__)#, template_folder='templates' )
 def index():
     return render_template('index.html')
 
-@app.route('/anagram/<word>_<language>_<results>/')
-def anagram(word, language, results):
-    results = "\n".join(sorted(results.strip('{\'}').split("\', \'")))
-    return render_template('anagram.html', results=results, word=word, language=language)
+@app.route('/anagram/results/<word>_<language>_<results>/')
+def results(word, language, results):
+    #results = "\n".join(sorted(results.strip('{\'}').split("\', \'")))
+    results = list(results)
+    return render_template('results.html', results=results, word=word, language=language)
 
-@app.route('/form', methods=['POST', 'GET'])
-def form():
+@app.route('/anagram', methods=['POST', 'GET'])
+def anagram():
     if request.method == 'POST':
         word = escape(request.form['word'])
         language = escape(request.form['language'])
         #results = Anagram.process(word, workdir +'/../anagram2/'+ language)
         results = Anagram.process(word, language)
-        return redirect(url_for('anagram', word=word, language=language, results=results))
+        return redirect(url_for('results', word=word, language=language, results=results))
     else:
         return render_template('form.html')
 
-@app.route('/pick/<results>/')
-def pick(results):
+@app.route('/anagram/results/<word>_<language>_<results>/pick/')
+def pick(word, language, results):
     print("results: ", results)
-    results = results.strip('<>').split("\n")
-    print("results: ", results)
-    return render_template('pick.html', results=results)
+    #results = results.strip('<>').split("\n")
+    #print("results: ", results)
+    return render_template('pick.html', word=word, language=language, results=results)
 
-@app.route('/rearrange/<anagram>/')
-def rearrange(anagram):
+@app.route('/anagram/results/<word>_<language>_<results>/pick/rearrange/<anagram>/')
+def rearrange(word, language, results, anagram):
     anagram = anagram.split("-")
-    return render_template('rearrange.html', anagram=anagram)
+    return render_template('rearrange.html', word=word, language=language, results=results, anagram=anagram)
 
 with app.test_request_context():
-    print(url_for('form'))
-    print(url_for('anagram', word='foo', language='bar', results='testtest'))
-    print(url_for('pick',  results='testtest\nbaz'))
+    print(url_for('anagram'))
+    print(url_for('results', word='foo', language='bar', results='testtest'))
+    #print(url_for('pick',  results='testtest\nbaz'))
 
 
 if __name__ == '__main__':
