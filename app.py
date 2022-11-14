@@ -30,9 +30,22 @@ def form():
     else:
         return render_template('form.html')
 
+@app.route('/pick/<results>/')
+def pick(results):
+    print("results: ", results)
+    results = results.strip('<>').split("\n")
+    print("results: ", results)
+    return render_template('pick.html', results=results)
+
+@app.route('/rearrange/<anagram>/')
+def rearrange(anagram):
+    anagram = anagram.split("-")
+    return render_template('rearrange.html', anagram=anagram)
+
 with app.test_request_context():
     print(url_for('form'))
     print(url_for('anagram', word='foo', language='bar', results='testtest'))
+    print(url_for('pick',  results='testtest\nbaz'))
 
 
 if __name__ == '__main__':
