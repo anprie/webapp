@@ -16,8 +16,8 @@ def index():
 
 @app.route('/anagram/results/<word>_<language>_<results>/')
 def results(word, language, results):
-    #results = "\n".join(sorted(results.strip('{\'}').split("\', \'")))
-    results = list(results)
+    results = sorted(results.strip('{\'}').split("\', \'"))
+    print("results: ", results)
     return render_template('results.html', results=results, word=word, language=language)
 
 @app.route('/anagram', methods=['POST', 'GET'])
