@@ -8,9 +8,10 @@
     <p>You entered '{{ word }}' and chose {{ language }}. </p>
     {% if results and results != "set()" %}
         <p>Your anagrams are</p>
-        <div style="font-size: 18px">
-        <pre>{{ results }}</pre>
-        </div>
+        {% set list = results.split('0') %}
+        {% for res in list %}
+	    <br>"{{ res }}"</br>
+        {% endfor %}
 	    <p><a href = "http://localhost:5000/anagram/results/{{ word }}_{{ language }}_{{ results }}/pick/" >Rearrange result</a></p>
     {% else %}
         <p>I'm terribly sorry but there is no anagram that corresponds with the letter distributions of {{ language }}</p>
