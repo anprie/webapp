@@ -6,13 +6,15 @@
 <body>
 {% if word and language %}
     <p>You entered '{{ word }}' and chose {{ language }}. </p>
-    {% if results and results != "set()" %}
+    {% if results and results != "" %}
         <p>Your anagrams are</p>
         {% set list = results.split('0') %}
         {% for res in list %}
 	    <br>"{{ res }}"</br>
         {% endfor %}
-	    <p><a href = "http://localhost:5000/anagram/results/{{ word }}_{{ language }}_{{ results }}/pick/" >Rearrange result</a></p>
+        {% if results.count('-') %}
+	        <p><a href = "http://localhost:5000/anagram/results/{{ word }}_{{ language }}_{{ results }}/pick/" >Rearrange result</a></p>
+        {% endif %}
     {% else %}
         <p>I'm terribly sorry but there is no anagram that corresponds with the letter distributions of {{ language }}</p>
     {% endif %}
