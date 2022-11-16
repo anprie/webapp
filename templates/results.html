@@ -10,7 +10,7 @@
         <p>Your anagrams are</p>
         {% set list = results.split('0') %}
         {% for res in list %}
-	    <br>"{{ res }}"</br>
+	    <br>{{ res }}</br>
         {% endfor %}
         {% if results.count('-') %}
 	        <p><a href = "http://localhost:5000/anagram/results/{{ word }}_{{ language }}_{{ results }}/pick/" >Rearrange result</a></p>
