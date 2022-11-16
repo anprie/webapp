@@ -26,6 +26,7 @@ def anagram():
         language = escape(request.form['language'])
         #results = Anagram.process(word, workdir +'/../anagram2/'+ language)
         results = Anagram.process(word, language)
+        results.add('test') # TODO: remove
         results = "0".join(sorted(results))
         return redirect(url_for('results', word=word, language=language, results=results))
     else:
@@ -38,13 +39,12 @@ def pick(word, language, results):
 
 @app.route('/anagram/results/<word>_<language>_<results>/pick/rearrange/<anagram>/')
 def rearrange(word, language, results, anagram):
-    anagram = anagram.split("-")
     return render_template('rearrange.html', word=word, language=language, results=results, anagram=anagram)
 
 with app.test_request_context():
     print(url_for('anagram'))
     print(url_for('results', word='foo', language='bar', results='test0test'))
-    #print(url_for('pick',  results='testtest\nbaz'))
+    print(url_for('pick', word='foo', language='bar', results='test0test-baz'))
 
 
 if __name__ == '__main__':
