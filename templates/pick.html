@@ -10,7 +10,7 @@
     {% set list = results.split('0') %}
     {% for res in list %}
         {% if res.count('-') %}
-	        <p><a href = "http://localhost:5000/anagram/results/{{ word }}_{{ language }}_{{ results }}/pick/rearrange/{{ res }}" method = "get">{{ res }}</a></p>
+	        <p><a href = "http://localhost:5000/anagram/results/pick/rearrange/{{ res }}" method = "get">{{ res }}</a></p>
         {% else %}
             <p>{{ res }}</p>
         {% endif %}

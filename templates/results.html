@@ -13,7 +13,7 @@
 	    <br>{{ res }}</br>
         {% endfor %}
         {% if results.count('-') %}
-	        <p><a href = "http://localhost:5000/anagram/results/{{ word }}_{{ language }}_{{ results }}/pick/" >Rearrange result</a></p>
+	        <p><a href = "http://localhost:5000/anagram/results/{{ results }}/pick/" >Rearrange result</a></p>
         {% endif %}
     {% else %}
         <p>I'm terribly sorry but there is no anagram that corresponds with the letter distributions of {{ language }}</p>
