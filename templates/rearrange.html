@@ -11,28 +11,20 @@
         <table>
             <tr>
             {% for s in sylls %}
+                <td>
+                    <textarea ondragenter= "return dragEnter(event)"  
+                    ondragover="allowDrop(event)"  
+                    ondrop="drop(event)" 
+                    dropzone="move"  
+                    cols = "10" 
+                    name = "syllable"> 
+                    </textarea>
+                </td>
                 <td id= {{ s }}
                     draggable = "true" 
                     ondragstart="drag(event)">
                     {{ s }}
                 </td>
-            {% endfor %}
-            </tr>
-            <tr>
-            <form>
-            {% for s in sylls %}
-                <td> 
-                    <textarea 
-                        ondragenter= "return dragEnter(event)" 
-                        ondragover="allowDrop(event)" 
-                        ondrop="drop(event)"
-                        dropzone="move" 
-                        rows = "1"
-                        cols = "10"
-                        name = "syllable">
-                    </textarea>
-                </td>
-
             {% endfor %}
             </tr>
         </table>
