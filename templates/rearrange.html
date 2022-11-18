@@ -11,26 +11,32 @@
         <table>
             <tr>
             {% for s in sylls %}
-                <td draggable = "true" 
-                ondragstart="return drag(event)">
-                {{ s }}</td>
+                <td id= {{ s }}
+                    draggable = "true" 
+                    ondragstart="drag(event)">
+                    {{ s }}
+                </td>
             {% endfor %}
             </tr>
             <tr>
             <form>
             {% for s in sylls %}
                 <td> 
-                {# dropzone="move" #}
-                {# ondragenter= "return dragEnter(event)" #}
-                {# ondragover="return allowDrop(event)" #}
-                {# ondrop="return drop(event)" #}
-                <textarea rows = "1" cols = "10" name = "syllable">
-                </textarea>
+                    <textarea 
+                        ondragenter= "return dragEnter(event)" 
+                        ondragover="allowDrop(event)" 
+                        ondrop="drop(event)"
+                        dropzone="move" 
+                        rows = "1"
+                        cols = "10"
+                        name = "syllable">
+                    </textarea>
                 </td>
 
             {% endfor %}
             </tr>
         </table>
     {% endif %}
+    <script type="text/javascript" src="/static/drag.js"></script>
 <body>
 
