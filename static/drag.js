@@ -1,5 +1,22 @@
 #!/usr/bin/env node
 
+function insert(L,i,j){
+        s_j = L[i]
+        if (i<=j)
+            for (let k=i+1; k<=j; k++)
+                L[k-1] = L[k];
+        else
+            for (let k=i-1; k>=j; k--)
+                L[k+1] = L[k];
+        L[j] = s_j;
+        return L
+}
+
+function rearrange(elem,L,i,j){
+    for (var i = 0; i<L.length; i++)
+        elem.appendChild(document.getElementById(L[i]));
+}
+
 function allowDrop(e) {
     e.preventDefault();
 }
