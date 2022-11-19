@@ -1,20 +1,42 @@
 #!/usr/bin/env node
 
 function insert(L,i,j){
-        s_j = L[i]
-        if (i<=j)
-            for (let k=i+1; k<=j; k++)
+        s_j = L[i];
+        if (i<=j){
+            for (let k=i+1; k<=j; k++){
                 L[k-1] = L[k];
-        else
-            for (let k=i-1; k>=j; k--)
+            }
+        } else {
+            for (let k=i-1; k>=j; k--){
                 L[k+1] = L[k];
+            }
+        }
         L[j] = s_j;
-        return L
+        return L;
+}
+
+function shift_left(id,text){
+    console.log("text: ", text);
+    newtext = text;
+    last = false;
+    //current = document.getElementById(id).previousSibling;
+    current = document.getElementById(id).previousElementSibling;
+    console.log("current: ", current);
+    while (current && last != true) {
+        curr_text = current.innerHTML;
+        if (curr_text == text){
+            last = true;
+        }
+        current.innerHTML = newtext;
+        current = current.previousElementSibling;
+        newtext = curr_text;
+    }
 }
 
 function rearrange(elem,L,i,j){
-    for (var i = 0; i<L.length; i++)
+    for (var i = 0; i<L.length; i++){
         elem.appendChild(document.getElementById(L[i]));
+    }
 }
 
 function allowDrop(e) {
@@ -27,9 +49,10 @@ function drag(e) {
 }
 
 function drop(e) {
-    var src_innerhtml = e.dataTransfer.getData("text");
-    console.log("text in dataTransfer object: ", src_innerhtml);
-    e.target.innerHTML = src_innerhtml;
+    var src_text = e.dataTransfer.getData("text");
+    var id = e.target.id;
+    shift_left(id, src_text);
+    e.target.innerHTML = src_text;
 }
 
 function dragStart(e) {
@@ -49,9 +72,8 @@ function dragOver(e) {
 }
 
 function dragDrop(e) {
-    var src_innerhtml = e.dataTransfer.getData("text");
-    console.log("text in dataTransfer object: ", src_innerhtml);
-    e.target.innerHTML = src_innerhtml;
+    var src_text = e.dataTransfer.getData("text");
+    e.target.innerHTML = src_text;
     e.stopPropagation();
     return false;
 }
