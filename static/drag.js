@@ -22,17 +22,19 @@ function allowDrop(e) {
 }
 
 function drag(e) {
-    e.dataTransfer.setData("text", e.target.id);
+    //e.dataTransfer.setData("text", e.target.id);
+    e.dataTransfer.setData("text", e.target.innerHTML);
 }
 
 function drop(e) {
-    var fetchData = e.dataTransfer.getData("text");
-    e.target.appendChild(document.getElementById(fetchData));
+    var src_innerhtml = e.dataTransfer.getData("text");
+    console.log("text in dataTransfer object: ", src_innerhtml);
+    e.target.innerHTML = src_innerhtml;
 }
 
 function dragStart(e) {
     e.dataTransfer.effectAllowed='move';
-    e.dataTransfer.setData("text", e.target.getAttribute('id'));
+    e.dataTransfer.setData("text", e.target.innerHTML);
     e.dataTransfer.setDragImage(e.target,0,0);
     return true;
 }
@@ -47,8 +49,9 @@ function dragOver(e) {
 }
 
 function dragDrop(e) {
-    var src = e.dataTransfer.getData("text");
-    e.target.appendChild(document.getElementById(src));
+    var src_innerhtml = e.dataTransfer.getData("text");
+    console.log("text in dataTransfer object: ", src_innerhtml);
+    e.target.innerHTML = src_innerhtml;
     e.stopPropagation();
     return false;
 }
