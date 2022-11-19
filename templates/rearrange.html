@@ -17,13 +17,10 @@
                     ondrop="drop(event)" 
                     id = {{ i }}
                     dropzone="move"  
-                    cols = "12" >
-                    <span name = "syllable"
-                    id = {{ s }}
+                    cols = "12" 
                     draggable = "true" 
                     ondragstart="drag(event)">
                     {{ s }}
-                    </span>
                 </td>
                 {% set i = i+1 %}
             {% endfor %}
