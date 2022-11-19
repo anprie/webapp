@@ -15,13 +15,9 @@ function insert(L,i,j){
         return L;
 }
 
-function shift_left(id,text){
-    console.log("text: ", text);
+function shift_left(current,text){
     newtext = text;
     last = false;
-    //current = document.getElementById(id).previousSibling;
-    current = document.getElementById(id).previousElementSibling;
-    console.log("current: ", current);
     while (current && last != true) {
         curr_text = current.innerHTML;
         if (curr_text == text){
@@ -44,14 +40,12 @@ function allowDrop(e) {
 }
 
 function drag(e) {
-    //e.dataTransfer.setData("text", e.target.id);
     e.dataTransfer.setData("text", e.target.innerHTML);
 }
 
 function drop(e) {
     var src_text = e.dataTransfer.getData("text");
-    var id = e.target.id;
-    shift_left(id, src_text);
+    shift_left(e.target, src_text);
     e.target.innerHTML = src_text;
 }
 
@@ -73,6 +67,7 @@ function dragOver(e) {
 
 function dragDrop(e) {
     var src_text = e.dataTransfer.getData("text");
+    shift_left(e.target, src_text);
     e.target.innerHTML = src_text;
     e.stopPropagation();
     return false;
