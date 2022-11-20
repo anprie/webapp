@@ -15,16 +15,30 @@ function insert(L,i,j){
         return L;
 }
 
-function shift_left(current,text){
+function shift_left(curr,id,text){
     newtext = text;
     last = false;
-    while (current && last != true) {
-        curr_text = current.innerHTML;
+    while (curr && last != true) {
+        curr_text = curr.innerHTML;
+        if (curr.id == id){
+            last = true;
+        }
+        curr.innerHTML = newtext;
+        curr = curr.previousElementSibling;
+        newtext = curr_text;
+    }
+}
+
+function shift_right(curr,text){
+    newtext = text;
+    last = false;
+    while (curr && last != true) {
+        curr_text = curr.innerHTML;
         if (curr_text == text){
             last = true;
         }
-        current.innerHTML = newtext;
-        current = current.previousElementSibling;
+        curr.innerHTML = newtext;
+        curr = curr.previousElementSibling;
         newtext = curr_text;
     }
 }
@@ -40,18 +54,23 @@ function allowDrop(e) {
 }
 
 function drag(e) {
-    e.dataTransfer.setData("text", e.target.innerHTML);
+    e.dataTransfer.setData("text", e.target.id);
 }
 
 function drop(e) {
-    var src_text = e.dataTransfer.getData("text");
-    shift_left(e.target, src_text);
+    var src_id = e.dataTransfer.getData("text");
+    source_elem = document.getElementById(src_id);
+    src_text = source_elem.innerHTML;
+    shift_left(e.target, src_id, src_text);
     e.target.innerHTML = src_text;
+    e.stopPropagation();
+    return false;
 }
 
+//https://www.geeksforgeeks.org/what-are-valid-values-for-the-id-attribute-in-html/
 function dragStart(e) {
     e.dataTransfer.effectAllowed='move';
-    e.dataTransfer.setData("text", e.target.innerHTML);
+    e.dataTransfer.setData("text", e.target.id);
     e.dataTransfer.setDragImage(e.target,0,0);
     return true;
 }
@@ -66,8 +85,10 @@ function dragOver(e) {
 }
 
 function dragDrop(e) {
-    var src_text = e.dataTransfer.getData("text");
-    shift_left(e.target, src_text);
+    var src_id = e.dataTransfer.getData("text");
+    source_elem = document.getElementById(id);
+    src_text = source_elem.innerHTML;
+    shift_left(e.target, src_id, src_text);
     e.target.innerHTML = src_text;
     e.stopPropagation();
     return false;
