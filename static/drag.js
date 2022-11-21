@@ -59,10 +59,15 @@ function drag(e) {
 
 function drop(e) {
     var src_id = e.dataTransfer.getData("text");
-    source_elem = document.getElementById(src_id);
-    src_text = source_elem.innerHTML;
-    shift_left(e.target, src_id, src_text);
-    e.target.innerHTML = src_text;
+    var source_elem = document.getElementById(src_id);
+    var src_text = source_elem.innerHTML;
+    var i = src_id.replace(/s_/,'');
+    var j = e.target.id.replace(/s_/,'');
+    if (i<=j){
+        shift_left(e.target, src_id, src_text);
+    } else {
+        shift_right(e.target, src_id, src_text);
+    }
     e.stopPropagation();
     return false;
 }
