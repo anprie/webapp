@@ -1,20 +1,5 @@
 #!/usr/bin/env node
 
-function insert(L,i,j){
-        s_j = L[i];
-        if (i<=j){
-            for (let k=i+1; k<=j; k++){
-                L[k-1] = L[k];
-            }
-        } else {
-            for (let k=i-1; k>=j; k--){
-                L[k+1] = L[k];
-            }
-        }
-        L[j] = s_j;
-        return L;
-}
-
 function shift_left(curr,id,text){
     newtext = text;
     while (curr){
