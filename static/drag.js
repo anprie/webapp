@@ -29,17 +29,17 @@ function shift_left(curr,id,text){
     }
 }
 
-function shift_right(curr,text){
+function shift_right(curr,id,text){
     newtext = text;
     last = false;
     while (curr && last != true) {
-        curr_text = curr.innerHTML;
-        if (curr_text == text){
+        if (curr.id == id){
             last = true;
         }
+        curr_text = curr.innerHTML;
         curr.innerHTML = newtext;
-        curr = curr.previousElementSibling;
         newtext = curr_text;
+        curr = curr.nextElementSibling;
     }
 }
 
