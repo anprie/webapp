@@ -17,16 +17,15 @@ function insert(L,i,j){
 
 function shift_left(curr,id,text){
     newtext = text;
-    last = false;
-    while (curr && last != true) {
+    while (curr){
         curr_text = curr.innerHTML;
-        if (curr.id == id){
-            last = true;
-        }
         curr.innerHTML = newtext;
-        curr = curr.previousElementSibling;
         newtext = curr_text;
-    }
+        if (curr.id == id){
+            break;
+        }
+        curr = curr.previousElementSibling;
+    } 
 }
 
 function shift_right(curr,id,text){
