@@ -83,13 +83,3 @@ function dragEnter(e) {
 function dragOver(e) {
     return false;
 }
-
-function dragDrop(e) {
-    var src_id = e.dataTransfer.getData("text");
-    source_elem = document.getElementById(id);
-    src_text = source_elem.innerHTML;
-    shift_left(e.target, src_id, src_text);
-    e.target.innerHTML = src_text;
-    e.stopPropagation();
-    return false;
-}
