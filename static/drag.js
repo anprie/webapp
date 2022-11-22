@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
 function shift_left(curr,id,text){
-    newtext = text;
+    var newtext = text;
+    var curr_text;
     while (curr){
         curr_text = curr.innerHTML;
         curr.innerHTML = newtext;
@@ -14,15 +15,15 @@ function shift_left(curr,id,text){
 }
 
 function shift_right(curr,id,text){
-    newtext = text;
-    last = false;
-    while (curr && last != true) {
-        if (curr.id == id){
-            last = true;
-        }
+    var newtext = text;
+    var curr_text;
+    while (curr) {
         curr_text = curr.innerHTML;
         curr.innerHTML = newtext;
         newtext = curr_text;
+        if (curr.id == id){
+            break;
+        }
         curr = curr.nextElementSibling;
     }
 }
