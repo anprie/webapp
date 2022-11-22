@@ -28,12 +28,6 @@ function shift_right(curr,id,text){
     }
 }
 
-function rearrange(elem,L,i,j){
-    for (var i = 0; i<L.length; i++){
-        elem.appendChild(document.getElementById(L[i]));
-    }
-}
-
 function allowDrop(e) {
     e.preventDefault();
 }
