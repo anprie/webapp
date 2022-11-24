@@ -5,16 +5,29 @@
 </head>
 <body>
 {% if word and language %}
-    <p>You entered '{{ word }}' and chose {{ language }}. </p>
+    <p>You entered '{{ word }}' and chose {{ language }}.</p>
     {% if results and results != "" %}
-        <p>Your anagrams are</p>
+        {% if results.count('-') %}
+            <p>To rearrange the syllables of an anagram, click on it!</p>
+        {% else %}
+            <p>Your anagrams are</p>
+        {% endif %}
         {% set list = results.split('0') %}
         {% for res in list %}
-	    <br>{{ res }}</br>
+	        <p>
+                {% if res.count('-') %}
+                    <a href= "http://localhost:5000/anagram/results/pick/rearrange/{{ res }}"
+                        method="get"
+                        style="text-decoration:none" 
+                        onmouseover="style='text-decoration:underline'" 
+                        onmouseout="style='text-decoration:none'">
+                        {{ res }}
+                    </a>
+                {% else %}
+                    {{ res }}
+                {% endif %}
+            </p>
         {% endfor %}
-        {% if results.count('-') %}
-	        <p><a href = "http://localhost:5000/anagram/results/{{ results }}/pick/" >Rearrange result</a></p>
-        {% endif %}
     {% else %}
         <p>I'm terribly sorry but there is no anagram that corresponds with the letter distributions of {{ language }}</p>
     {% endif %}
