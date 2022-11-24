@@ -3,3 +3,29 @@
     gap: 20px;
     flex-wrap: wrap;
 }
+
+td[id^="s_"] {
+    font-weight: bold;
+    font-size: 200%;
+    border: thin solid gray;
+    color: midnightblue;
+}
+
+h1 {
+    color: deeppink; 
+}
+
+html {
+    background-color: mistyrose;
+}
+
+table {
+    text-align: center;
+    vertical-align: middle;
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    width: 500px;
+    height: 40px;
+}
+
