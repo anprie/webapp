@@ -16,7 +16,6 @@ def index():
 
 @app.route('/anagram/results/<word>_<language>_<results>/')
 def results(word, language, results):
-    #results = results.split("0")
     return render_template('results.html', results=results, word=word, language=language)
 
 @app.route('/anagram', methods=['POST', 'GET'])
@@ -32,19 +31,13 @@ def anagram():
     else:
         return render_template('form.html')
 
-@app.route('/anagram/results/<results>/pick/')
-def pick(results):
-    print("results: ", results)
-    return render_template('pick.html', results=results)
-
-@app.route('/anagram/results/pick/rearrange/<anagram>/')
+@app.route('/anagram/results/rearrange/<anagram>/')
 def rearrange(anagram):
     return render_template('rearrange.html', anagram=anagram)
 
 with app.test_request_context():
     print(url_for('anagram'))
     print(url_for('results', word='foo', language='bar', results='test0test'))
-    print(url_for('pick', results='test0test-baz'))
     print(url_for('rearrange', anagram='bar-baz'))
 
 
