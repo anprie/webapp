@@ -13,8 +13,9 @@
             <p>Your anagrams are</p>
         {% endif %}
         {% set list = results.split('0') %}
+        <ul>
         {% for res in list %}
-	        <p>
+	        <li style="list-style-type: none;">
                 {% if res.count('-') %}
                     <a href= "http://localhost:5000/anagram/results/rearrange/{{ res }}"
                         method="get"
@@ -26,8 +27,9 @@
                 {% else %}
                     {{ res }}
                 {% endif %}
-            </p>
+            </li>
         {% endfor %}
+        </ul>
     {% else %}
         <p>I'm terribly sorry but there is no anagram that corresponds with the letter distributions of {{ language }}</p>
     {% endif %}
