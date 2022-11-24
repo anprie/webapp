@@ -1,20 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset ="utf-8"></meta>
-    <title>anagram generator</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-    <h1>Anagram</h1>
+{% block title %}
+anagram generator
+{% endblock %}
 
-    <p>
+{% block content %}
+<p>
 Welcome! This is a anagram generator. Give it a word and pick a language, and it will return a list of anagrams that are pronounceable in the language you chose.
-    </p>
-	<p><a href = "http://localhost:5000/anagram" method = "get">Continue</a></p>
-</body>
-</html>
+</p>
+<p><a href = "http://localhost:5000/anagram" method = "get">Continue</a></p>
+{% endblock %}
 
-
-    </form>
-</body>
