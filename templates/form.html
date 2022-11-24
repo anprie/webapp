@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset ="utf-8"></meta>
-    <title>form</title>
-</head>
-<body>
-    <h1>Anagram Generator</h1>
-	<form action = "http://localhost:5000/anagram" method = "post">
+{% extends "base.html" %}
+
+{% block title %}
+form
+{% endblock %}
+
+{% block content %}
+<form action = "http://localhost:5000/anagram" method = "post">
         <table>
             <tr>
                 <td>Please enter a word!</td>
@@ -37,8 +36,5 @@
         </table>
 
         <p><input type = "submit" value = "submit" /></p>
-
 	</form>
-</body>
-</html>
-
+{% endblock %}
