@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset ="utf-8"></meta>
-    <title>form</title>
-</head>
-<body>
-    <h1>Anagram Generator</h1>
+{% extends "base.html" %}
+
+{% block title %}
+form
+{% endblock %}
+
+{% block content %}
     {% if anagram %}
         {% set sylls = anagram.split('-') %}
         <table>
@@ -26,5 +25,4 @@
         </table>
     {% endif %}
     <script type="text/javascript" src="/static/drag.js"></script>
-<body>
-
+{% endblock %}
