@@ -1,10 +1,10 @@
-<!doctype html>
-<head>
-    <title>results</title>
-    <meta charset ="utf-8"></meta>
-    <link rel="stylesheet" href="http://localhost:5000/static/style.css">
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}
+results
+{% endblock %}
+
+{% block content %}
 {% if word and language %}
     <p>You entered '{{ word }}' and chose {{ language }}.</p>
     {% if results and results != "" %}
@@ -37,4 +37,4 @@
 {% else %}
     <p>Sorry, something went wrong!</p>
 {% endif %}
-</body>
+{% endblock %}
