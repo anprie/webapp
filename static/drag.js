@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 function shift_left(curr,id,text){
-    var newtext = text;
-    var curr_text;
+    let newtext = text;
+    let curr_text;
     while (curr){
         curr_text = curr.innerHTML;
         curr.innerHTML = newtext;
@@ -15,8 +15,8 @@ function shift_left(curr,id,text){
 }
 
 function shift_right(curr,id,text){
-    var newtext = text;
-    var curr_text;
+    let newtext = text;
+    let curr_text;
     while (curr) {
         curr_text = curr.innerHTML;
         curr.innerHTML = newtext;
@@ -37,11 +37,11 @@ function drag(e) {
 }
 
 function drop(e) {
-    var src_id = e.dataTransfer.getData("text");
-    var source_elem = document.getElementById(src_id);
-    var src_text = source_elem.innerHTML;
-    var i = src_id.replace(/s_/,'');
-    var j = e.target.id.replace(/s_/,'');
+    let src_id = e.dataTransfer.getData("text");
+    let source_elem = document.getElementById(src_id);
+    let src_text = source_elem.innerHTML;
+    let i = src_id.replace(/s_/,'');
+    let j = e.target.id.replace(/s_/,'');
     if (i<=j){
         shift_left(e.target, src_id, src_text);
     } else {
