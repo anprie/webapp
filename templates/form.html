@@ -6,13 +6,12 @@ form
 
 {% block content %}
 <form action = "http://localhost:5000/anagram" method = "post">
-        <table>
+        <table id='formtable'>
             <tr>
                 <td>Please enter a word!</td>
                 <td>
                     <input type = "text"
                             name = "word"
-                            size = 15
                             maxlength = 20
                             required >
                     </input>
