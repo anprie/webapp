@@ -25,7 +25,6 @@ def anagram():
         language = escape(request.form['language'])
         #results = Anagram.process(word, workdir +'/../anagram2/'+ language)
         results = Anagram.process(word, language)
-        results.add('test') # TODO: remove
         results = "0".join(sorted(results))
         return redirect(url_for('results', word=word, language=language, results=results))
     else:
