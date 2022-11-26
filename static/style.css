@@ -4,11 +4,12 @@
     flex-wrap: wrap;
 }
 
-td[id^="s_"] {
+.syll {
     font-weight: bold;
     font-size: 200%;
     border: thin solid gray;
     color: midnightblue;
+    background-color: linen;
 }
 
 h1 {
@@ -19,13 +20,14 @@ html {
     background-color: mistyrose;
 }
 
-table {
+#anagram {
+    width: 100%
     text-align: center;
+    table-layout: fixed;
     vertical-align: middle;
-    position: absolute;
-    top: 50%;
-    left: 20%;
-    width: 500px;
-    height: 40px;
+    height: 50px;
 }
 
+#formtable {
+    vertical-align: middle;
+}
