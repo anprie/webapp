@@ -7,12 +7,11 @@ form
 {% block content %}
     {% if anagram %}
         {% set sylls = anagram.split('-') %}
-        <table>
+        <table id='anagram'>
             <tr>
             {% for s in sylls %}
-                <td id = 's_{{ loop.index0 }}'
+                <td class='syll' id = 's_{{ loop.index0 }}'
                     dropzone="move"  
-                    cols = "12" 
                     draggable = "true" 
                     ondragstart="drag(event)"
                     ondragover="allowDrop(event)"  
