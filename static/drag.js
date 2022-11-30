@@ -28,6 +28,20 @@ function shift_right(curr,id,text){
     }
 }
 
+function shift(curr,id,text,sibling){
+    let newtext = text;
+    let curr_text;
+    while (curr) {
+        curr_text = curr.innerHTML;
+        curr.innerHTML = newtext;
+        newtext = curr_text;
+        if (curr.id == id){
+            break;
+        }
+        curr = curr[sibling];
+    }
+}
+
 function allowDrop(e) {
     e.preventDefault();
 }
@@ -42,11 +56,13 @@ function drop(e) {
     let src_text = source_elem.innerHTML;
     let i = src_id.replace(/s_/,'');
     let j = e.target.id.replace(/s_/,'');
+    let sibling = '';
     if (i<=j){
-        shift_left(e.target, src_id, src_text);
+        sibling = 'previousElementSibling';
     } else {
-        shift_right(e.target, src_id, src_text);
+        sibling = 'nextElementSibling';
     }
+    shift(e.target, src_id, src_text, sibling);
     e.stopPropagation();
     return false;
 }
