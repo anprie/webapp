@@ -1,33 +1,5 @@
 #!/usr/bin/env node
 
-function shift_left(curr,id,text){
-    let newtext = text;
-    let curr_text;
-    while (curr){
-        curr_text = curr.innerHTML;
-        curr.innerHTML = newtext;
-        newtext = curr_text;
-        if (curr.id == id){
-            break;
-        }
-        curr = curr.previousElementSibling;
-    } 
-}
-
-function shift_right(curr,id,text){
-    let newtext = text;
-    let curr_text;
-    while (curr) {
-        curr_text = curr.innerHTML;
-        curr.innerHTML = newtext;
-        newtext = curr_text;
-        if (curr.id == id){
-            break;
-        }
-        curr = curr.nextElementSibling;
-    }
-}
-
 function shift(curr,id,text,sibling){
     let newtext = text;
     let curr_text;
