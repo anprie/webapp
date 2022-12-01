@@ -1,7 +1,5 @@
 from flask import Flask, redirect, url_for, request, render_template
 from markupsafe import escape
-import sys
-#sys.path.insert(0, '/home/antonia/repositories/anagram2/')
 #import os
 #workdir = os.path.abspath( os.path.dirname( __file__ ) )
 
@@ -16,7 +14,7 @@ def index():
 
 @app.route('/anagram/results/<word>_<language>_<results>/')
 def results(word, language, results):
-    return render_template('results.html', results=results, word=word, language=language)
+    return render_template('results.html', results=escape(results), word=escape(word), language=escape(language))
 
 @app.route('/anagram', methods=['POST', 'GET'])
 def anagram():
@@ -32,7 +30,7 @@ def anagram():
 
 @app.route('/anagram/results/rearrange/<anagram>/')
 def rearrange(anagram):
-    return render_template('rearrange.html', anagram=anagram)
+    return render_template('rearrange.html', anagram=escape(anagram))
 
 with app.test_request_context():
     print(url_for('anagram'))
