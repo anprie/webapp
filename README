@@ -1,0 +1,3 @@
+Just trying out Flask and Jinja.
+
+This app makes use of my anagram module https://github.com/antoniapriesnitz/anagram2. It expects to find the files anagram.py, word.py, language.py, and german.txt in the webapp folder. If creating soft links or copying the files is not an option, uncomment and adjust the path in the code.
