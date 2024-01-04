@@ -1,11 +1,9 @@
 from flask import Flask, redirect, url_for, request, render_template
 from markupsafe import escape
-#import os
-#workdir = os.path.abspath( os.path.dirname( __file__ ) )
 
 from anagram import Anagram
 
-app = Flask(__name__)#, template_folder='templates' )
+app = Flask(__name__)
 
 
 @app.route('/')
@@ -16,17 +14,17 @@ def index():
 def results(word, language, results):
     return render_template('results.html', results=escape(results), word=escape(word), language=escape(language))
 
-@app.route('/anagram', methods=['POST', 'GET'])
+@app.route('/anagram', methods=['GET'])
 def anagram():
-    if request.method == 'POST':
-        word = escape(request.form['word'])
-        language = escape(request.form['language'])
-        #results = Anagram.process(word, workdir +'/../anagram2/'+ language)
-        results = Anagram.process(word, language)
-        results = "0".join(sorted(results))
-        return redirect(url_for('results', word=word, language=language, results=results))
-    else:
-        return render_template('form.html')
+    return render_template('form.html')
+
+@app.route('/anagram', methods=['POST'])
+def anagram():
+    word = escape(request.form['word'])
+    language = escape(request.form['language'])
+    results = Anagram.process(word, language)
+    results = "0".join(sorted(results))
+    return redirect(url_for('results', word=word, language=language, results=results))
 
 @app.route('/anagram/results/rearrange/<anagram>/')
 def rearrange(anagram):
