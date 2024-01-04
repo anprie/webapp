@@ -1,7 +1,6 @@
 from flask import Flask, redirect, url_for, request, render_template
 from markupsafe import escape
-
-from anagram import Anagram
+import requests
 
 app = Flask(__name__)
 
@@ -22,8 +21,8 @@ def anagram():
 def anagram():
     word = escape(request.form['word'])
     language = escape(request.form['language'])
-    results = Anagram.process(word, language)
-    results = "0".join(sorted(results))
+    results = requests.get(f'http://anagram.solver/{word}_{language}/').content
+    results = "0".join(results)
     return redirect(url_for('results', word=word, language=language, results=results))
 
 @app.route('/anagram/results/rearrange/<anagram>/')
