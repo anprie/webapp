@@ -18,11 +18,11 @@ def anagram():
     return render_template('form.html')
 
 @app.route('/anagram', methods=['POST'])
-def anagram():
+def solve():
     word = escape(request.form['word'])
     language = escape(request.form['language'])
-    results = requests.get(f'http://anagram.solver/{word}_{language}/').content
-    results = "0".join(results)
+    res= requests.get('http://localhost:8000/', params = {'word': word,'language': language}).json()
+    results = "0".join(res['results'])
     return redirect(url_for('results', word=word, language=language, results=results))
 
 @app.route('/anagram/results/rearrange/<anagram>/')
