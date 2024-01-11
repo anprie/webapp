@@ -26,6 +26,8 @@ def solve():
     language = escape(request.form['language'])
     res= requests.get('http://solver.anagram.de/', params = {'word': word,'language': language}).json()
     results = "0".join(res['results'])
+    if results == "":
+        results = "0"
     return redirect(url_for('results', word=word, language=language, results=results))
 
 

@@ -7,7 +7,7 @@ results
 {% block content %}
 {% if word and language %}
     <p>You entered '{{ word }}' and chose {{ language }}.</p>
-    {% if results and results != "" %}
+    {% if results and results != "0" %}
         {% if results.count('-') %}
             <p>To rearrange the syllables of an anagram, click on it!</p>
         {% else %}
@@ -32,7 +32,7 @@ results
           </nobr>
         </div>
     {% else %}
-    <p>There seems to be no anagram of the word '{{ word }}' that corresponds with the letter distributions of {{ language }}</p>
+    <p>There seems to be no anagram of the word '{{ word }}' that corresponds to the distribution of letters in {{ language }}.</p>
     {% endif %}
 {% else %}
     <p>Sorry, something went wrong!</p>
