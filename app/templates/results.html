@@ -18,7 +18,7 @@ results
         {% for res in list %}
           <nobr>
                 {% if res.count('-') %}
-                    <a href= "http://localhost:5000/anagram/results/rearrange/{{ res }}"
+                    <a href= "http://localhost:5000/rearrange/{{ res }}"
                         method="get"
                         style="text-decoration:none" 
                         onmouseover="style='text-decoration:underline'" 
@@ -32,7 +32,7 @@ results
           </nobr>
         </div>
     {% else %}
-        <p>I'm terribly sorry but there is no anagram that corresponds with the letter distributions of {{ language }}</p>
+    <p>There seems to be no anagram of the word '{{ word }}' that corresponds with the letter distributions of {{ language }}</p>
     {% endif %}
 {% else %}
     <p>Sorry, something went wrong!</p>
