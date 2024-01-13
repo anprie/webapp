@@ -5,7 +5,7 @@ import requests
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
 
@@ -15,12 +15,7 @@ def results(word, language, results):
     return render_template('results.html', results=escape(results), word=escape(word), language=escape(language))
 
 
-@app.route('/anagram', methods=['GET'])
-def anagram():
-    return render_template('form.html')
-
-
-@app.route('/anagram', methods=['POST'])
+@app.route('/', methods=['POST'])
 def solve():
     word = escape(request.form['word'])
     language = escape(request.form['language'])
@@ -37,7 +32,7 @@ def rearrange(anagram):
 
 
 with app.test_request_context():
-    print(url_for('anagram'))
+    print(url_for('index'))
     print(url_for('results', word='foo', language='bar', results='test0test'))
     print(url_for('rearrange', anagram='bar-baz'))
 
