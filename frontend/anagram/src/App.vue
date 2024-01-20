@@ -13,22 +13,26 @@
   <h5 class="card-title">Welcome! This is a anagram solver. Give it a word and pick a language, and it will return a list of anagrams that are pronounceable in the language you chose.</h5>
 
   <submit-word
+    v-if="showForm"
     ref='SubmitWord'
-    @show-results='toggleResults'
+    @show-anagrams='toggleResults'
   >
   </submit-word>
 
   <anagrams-list
     ref='AnagramsList'
-    v-if='showResults'
+    v-if="this.showResults && this.anagrams.length && this.anagrams != '0'"
     :anagrams='this.anagrams'
     @select-anagram='toggleRearrange'
   >
   </anagrams-list>
+  <p v-else>
+    There seems to be no anagram of the word you entered that corresponds with the distribution of letters in the language you chose.
+  </p>
 
   <rearrange-syllables
     ref='RearrangeSyllables'
-    v-if='showRearrange'
+    v-if="showRearrange && this.anagram != '0'"
     :anagram='this.anagram'
   >
   </rearrange-syllables>
@@ -48,28 +52,22 @@ export default {
   },
   data() {
     return {
-      showResults: 1,
-      showRearrange: 1,
+      showResults: 0,
+      showRearrange: 0,
+      showForm: 1,
       anagrams: [],
       anagram: "",
     };
   },
-  computed: {
-    anagramsList() {
-      return this.anagrams;
-    },
-    selectedAnagram() {
-      return this.anagram;
-    },
-  },
   methods: {
     toggleResults(anagrams) {
       this.anagrams = anagrams;
-      this.showResults = 1;
+      (this.showForm = 0), (this.showResults = 1);
       this.showRearrange = 0;
     },
     toggleRearrange(anagram) {
       this.anagram = anagram;
+      this.showForm = 0;
       this.showResults = 0;
       this.showRearrange = 1;
     },
@@ -107,5 +105,11 @@ html {
 
 #formtable {
   vertical-align: middle;
+}
+
+.container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 </style>

@@ -1,10 +1,14 @@
 <template>
   <div>
-    <div v-if="anagram !='0'">
-      {{ this.dummyAnagram }}
-    </div>
-    <p v-else>
-      There seems to be no anagram of the word {word} that corresponds with the distribution of letters in {language}
+    <p v-if="! anagram.includes('-')">
+      {{ anagram }}
+    </p>
+    <p
+      v-else
+      v-for='syll in splitIntoSyllables(anagram)'
+      v-bind:key='syll'
+    >
+      <span> {{ syll }} </span>
     </p>
   </div>
 </template>
@@ -16,9 +20,14 @@ export default {
   props: ["anagram"],
   data() {
     return {
-      dummyAnagram: "foo-bar-baz",
+      syllables: [],
     };
   },
-  methods: {},
+  methods: {
+    splitIntoSyllables(word) {
+      this.syllables = word.split("-");
+      return this.syllables;
+    },
+  },
 };
 </script>

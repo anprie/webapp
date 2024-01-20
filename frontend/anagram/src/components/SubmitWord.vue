@@ -1,10 +1,7 @@
 <template>
   <div>
 
-    <form
-      action="http://solver.anagram.de"
-      method="post"
-    >
+    <form>
       <label for="word">
         Please enter a word!
       </label>
@@ -56,6 +53,7 @@
         class="btn btn-primary"
         data-bs-toggle="modal"
         data-bs-target="#modalExample"
+        @click='showAnagrams'
       >
         Submit
       </button>
@@ -64,14 +62,18 @@
 </template>
 
 
-# on button click post request to api
-# emit response (propagate to parent component)
 <script>
 export default {
   name: "SubmitWord",
+  emits: ["show-anagrams"],
+  data() {
+    return {
+      dummyResponse: ["foo-bar", "o-fo-bar", "foo", "0"],
+    };
+  },
   methods: {
-    show(results) {
-      this.$emit("show-results", results);
+    showAnagrams() {
+      this.$emit("show-anagrams", this.dummyResponse);
     },
   },
 };
